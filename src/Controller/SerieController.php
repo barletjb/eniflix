@@ -41,4 +41,19 @@ final class SerieController extends AbstractController
             'total_pages' => $totalPages
         ]);
     }
+
+
+    #[Route('/custom-list', name: 'custom-list')]
+    public function listCustom(SerieRepository $serieRepository): Response
+    {
+
+        $series = $serieRepository->findSeriesCustom(500, 8);
+
+        return $this->render('serie/list.html.twig', [
+            'series' => $series,
+            'page' => 1,
+            'total_pages' => 10
+        ]);
+    }
+
 }
