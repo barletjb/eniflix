@@ -50,6 +50,9 @@ final class SerieController extends AbstractController
         //$series = $serieRepository->findSeriesCustom(400, 8);
         $series = $serieRepository->findSeriesWithDQl(400, 8);
 
+        // Le requête SQL raw nécessite que l'on adapte le template (firstAirDate -> first_air_date
+        //$series = $serieRepository->findSeriesWithSQl(400,8);
+
         return $this->render('serie/list.html.twig', [
             'series' => $series,
             'page' => 1,
