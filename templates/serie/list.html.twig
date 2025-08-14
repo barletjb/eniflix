@@ -3,11 +3,20 @@
 
 {% block body %}
     <h2>Catalogue</h2>
+    {% if page > 1  %}
+        <a href="{{ path('list', {'page' : page - 1}) }}"> Page précédente </a>&nbsp;
+    {% endif %}
+
+    {% if page < total_pages %}
+        <a href="{{ path('list', {'page' : page + 1}) }}"> Page Suivante</a>
+    {% endif %}
+
     <table>
         <tr>
             <td>Id</td>
             <td>Nom</td>
             <td>Status</td>
+            <td>Genre</td>
             <td>Vote</td>
             <td>Popularity</td>
             <td>First air date</td>
@@ -18,10 +27,12 @@
                 <td>{{ serie.id }}</td>
                 <td>{{ serie.name }}</td>
                 <td>{{ serie.status }}</td>
+                <td>{{ serie.genre }}</td>
                 <td>{{ serie.vote }}</td>
                 <td>{{ serie.popularity }}</td>
                 <td>{{ serie.firstAirDate|date('d/m/Y') }}</td>
                 <td>{{ serie.lastAirDate ? serie.lastAirDate|date('d/m/Y') : "" }}</td>
+                <td><a href="">Détail</a></td>
             </tr>
     {% endfor %}
     </table>
