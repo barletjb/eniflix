@@ -25,8 +25,24 @@ class SerieRepository extends ServiceEntityRepository
             ->addOrderBy('s.firstAirDate', 'DESC')
             ->setParameter('popularity', $popularity)
             ->setParameter('vote', $vote)
+            ->setFirstResult(0)
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findSeriesWithDQl(float $popularity, float $vote)
+    {
+        $dql = "SELECT s FROM App\Entity\Serie s 
+                WHERE (s.popularity > :popularity OR s.firstAirDate > :date) AND s.vote > :vote 
+                ORDER BY s.popularity DESC, s.firstAirDate DESC";
+        return $this->getEntityManager()->createQuery($dql)
+            ->setFirstResult(0)
+            ->setMaxResults(10)
+            ->setParameter(':popularity', $popularity)
+            ->setParameter(':vote', $vote)
+            ->setParameter(':date', new \DateTime('- 5 years'))
+            ->execute();
     }
 
     //    /**

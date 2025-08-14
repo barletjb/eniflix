@@ -20,15 +20,13 @@ class AppFixtures extends Fixture
                 ->setGenre($faker->randomElement(['Drama', 'Western', 'Comedy', 'Horror', 'Thriller']))
                 ->setStatus($faker->randomElement(['Returning', 'Ended', 'Canceled']))
                 ->setVote($faker->randomFloat(2, 0, 10))
-                ->setPopularity($faker->randomFloat(2, 0, 10))
-                ->setDateCreated(new \DateTime())
+                ->setPopularity($faker->randomFloat(2, 200, 900))
                 ->setFirstAirDate($faker->dateTimeBetween('-10 year', '-1 month'))
-                ->setLastAirDate($faker->dateTimeBetween('-1 year', 'now'));
+                ->setDateCreated(new \DateTime());
 
             if ($serie->getStatus() !== 'Returning') {
                 $serie->setLastAirDate($faker->dateTimeBetween($serie->getFirstAirDate(), '-1 day'));
             }
-
             $manager->persist($serie);
         }
         $manager->flush();

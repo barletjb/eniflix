@@ -47,7 +47,8 @@ final class SerieController extends AbstractController
     public function listCustom(SerieRepository $serieRepository): Response
     {
 
-        $series = $serieRepository->findSeriesCustom(500, 8);
+        //$series = $serieRepository->findSeriesCustom(400, 8);
+        $series = $serieRepository->findSeriesWithDQl(400, 8);
 
         return $this->render('serie/list.html.twig', [
             'series' => $series,
