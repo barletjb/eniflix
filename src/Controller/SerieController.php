@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 
+use App\Entity\Serie;
+use App\Form\SerieType;
 use App\Repository\SerieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -33,8 +37,8 @@ final class SerieController extends AbstractController
         $nbPerPage = $parameters->get('serie')['nb_max'];
         $offset = ($page - 1) * $nbPerPage;
         $criterias = [
-         //   'status' => 'Returning',
-         //   'genre' => 'Drama'
+            //   'status' => 'Returning',
+            //   'genre' => 'Drama'
         ];
 
 
@@ -73,4 +77,25 @@ final class SerieController extends AbstractController
         ]);
     }
 
+    #[Route('/create', name: 'serie_create')]
+    public function createSerie(Request $request, EntityManagerInterface $em): Response
+    {
+        $serie = new Serie();
+        $form = $this->createForm(SerieType::class, $serie);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $serie->setDateCreated(new \DateTime());
+            $em->persist($serie);
+            $em->flush();
+
+            return $this->redirectToRoute('details', ['id' => $serie->getId()]);
+        }
+
+        return $this->render('serie/edit.html.twig', [
+            'serie_form' => $form,
+        ]);
+    }
 }
