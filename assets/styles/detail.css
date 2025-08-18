@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+
+/* Fond dynamique avec variable CSS */
+.serie-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 2rem;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    var(--backdrop-url) no-repeat center center / cover;
+}
+
+.serie-card {
+    background-color: rgba(20, 20, 20, 0.8);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.serie-card h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #e50914; /* rouge Netflix */
+}
+
+.serie-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.genre {
+    font-style: italic;
+    color: #bbb;
+    margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

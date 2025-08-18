@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ENIFlix - {{ serie.name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/detail.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main class="serie-background" style="--backdrop-url: url('{{ asset('uploads/backdrops/' ~ serie.backdrop) }}')">
+        <div class="serie-card">
+            <h2>{{ serie.name }}</h2>
+            <p class="genre">Genre : {{ serie.genre }}</p>
+            <p>{{ serie.overview }}</p>
+        </div>
+    </main>
+{% endblock %}

@@ -12,6 +12,19 @@ use Symfony\Component\Routing\Attribute\Route;
 final class SerieController extends AbstractController
 {
 
+    #[Route('/serie/detail/{id}', name: 'details', methods: ['GET'])]
+    public function detail(int $id, SerieRepository $serieRepository): Response
+    {
+        $serie = $serieRepository->find($id);
+
+        if (!$serie) {
+            throw $this->createNotFoundException('This serie does not exist!');
+        }
+        return $this->render('serie/detail.html.twig', [
+            'serie' => $serie,
+        ]);
+    }
+
     #[Route('/serie/list/{page}', name: 'list', requirements: ['page' => '\d+'], defaults: ['page' => 1], methods: ['GET'],)]
     public function list(SerieRepository $serieRepository, int $page, ParameterBagInterface $parameters): Response
     {
@@ -20,8 +33,8 @@ final class SerieController extends AbstractController
         $nbPerPage = $parameters->get('serie')['nb_max'];
         $offset = ($page - 1) * $nbPerPage;
         $criterias = [
-            'status' => 'Returning',
-            'genre' => 'Drama'
+         //   'status' => 'Returning',
+         //   'genre' => 'Drama'
         ];
 
 

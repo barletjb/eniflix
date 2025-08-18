@@ -24,45 +24,15 @@
             {% endif %}
         </div>
 
-        <div class="uk-overflow-auto uk-margin-top">
-            <table class="catalogue-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Status</th>
-                    <th>Genre</th>
-                    <th>Vote</th>
-                    <th>Popularity</th>
-                    <th>First air date</th>
-                    <th>Last air date</th>
-                    <th>Détail</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for serie in series %}
-                    <tr>
-                        <td>{{ serie.id }}</td>
-                        <td>{{ serie.name }}</td>
-                        <td>{{ serie.status }}</td>
-                        <td>{{ serie.genre }}</td>
-                        <td>{{ serie.vote }}</td>
-                        <td>{{ serie.popularity }}</td>
-                        <td>{{ serie.firstAirDate|date('d/m/Y') }}</td>
-                        <td>{{ serie.lastAirDate ? serie.lastAirDate|date('d/m/Y') : "" }}</td>
-                        <td>
-                            <a class="uk-button uk-button-primary uk-button-small" href="">
-                                <span uk-icon="icon: info"></span> Détail
-                            </a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="9" class="uk-text-center uk-text-muted">Aucune série trouvée.</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <section class="serie-list">
+            {% for serie in series %}
+                <a href=" {{ path('details', { id : serie.id}) }}">
+                    <img src="{{ asset('uploads/posters/series/' ~ serie.poster) }}" width="250px" alt="{{ 'Poster de ' ~ serie.name }}" loading="lazy">
+                </a>
+            {% else %}
+                <p> Pas de série </p>
+            {% endfor %}
+        </section>
+
     </div>
 {% endblock %}
