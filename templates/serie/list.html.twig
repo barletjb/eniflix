@@ -26,13 +26,23 @@
 
         <section class="serie-list">
             {% for serie in series %}
-                <a href=" {{ path('details', { id : serie.id}) }}">
-                    <img src="{{ asset('uploads/posters/series/' ~ serie.poster) }}" width="250px" alt="{{ 'Poster de ' ~ serie.name }}" loading="lazy">
-                </a>
+                <div class="container">
+                <div class="box" style="--poster: url('{{ asset('uploads/posters/series/' ~ serie.poster) }}')">
+
+                    <div class="content">
+                        <h2>{{ serie.name }}</h2>
+                        <p>{{ serie.overview|slice(0, 120) ~ '...' }}</p>
+                        <a href="{{ path('details', { id : serie.id}) }}">Voir la fiche</a>
+                    </div>
+                </div>
+                </div>
             {% else %}
-                <p> Pas de série </p>
+                <p>Pas de série</p>
             {% endfor %}
         </section>
-
     </div>
 {% endblock %}
+
+
+
+

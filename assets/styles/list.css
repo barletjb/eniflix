@@ -1,6 +1,83 @@
-.serie-list{
+/* Grille responsive */
+.serie-list {
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 2em;
     grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    justify-items: center;
+    padding: 40px 0;
+}
 
+/* Carte */
+.box {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-image: var(--poster);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+/* Overlay sombre léger */
+.box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    pointer-events: none;
+}
+
+/* Contenu */
+.content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    z-index: 10;
+}
+
+.box:hover .content {
+    transform: translateY(0);
+}
+
+/* Titre */
+.content h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+/* Texte */
+.content p {
+    font-size: 0.95em;
+    line-height: 1.4em;
+    margin-bottom: 15px;
+}
+
+/* Bouton */
+.content a {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #fff;
+    color: #111;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.content a:hover {
+    background: #ffcf4d;
 }
