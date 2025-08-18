@@ -1,0 +1,49 @@
+/* Tableau catalogue stylisé */
+.catalogue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.catalogue-table thead {
+    background: #1e293b; /* bleu-gris foncé */
+    color: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.catalogue-table th,
+.catalogue-table td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+.catalogue-table tbody tr {
+    background: rgba(30, 41, 59, 0.6); /* gris-bleu semi transparent */
+    transition: background 0.3s ease;
+}
+
+.catalogue-table tbody tr:nth-child(even) {
+    background: rgba(51, 65, 85, 0.6); /* variation pour lisibilité */
+}
+
+.catalogue-table tbody tr:hover {
+    background: rgba(59, 130, 246, 0.3); /* bleu clair au hover */
+}
+
+.catalogue-table td {
+    color: #e2e8f0; /* gris clair lisible */
+}
+
+.catalogue-table td:first-child {
+    font-weight: bold;
+    color: #60a5fa; /* bleu clair pour ID */
+}
+
+.catalogue-table td:nth-child(2) {
+    font-weight: 600;
+    color: #f9fafb;
+}

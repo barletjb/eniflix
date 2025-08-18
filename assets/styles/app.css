@@ -8,15 +8,19 @@ body {
     padding: 10px;
 }
 
-nav ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 2em;
-
+/* Navbar sur fond transparent */
+.uk-navbar-container {
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    padding: 0 20px;
 }
 
-nav li a {
-    text-decoration: none;
-    color: inherit;
+.uk-navbar-nav > li > a {
+    color: #EEE !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.uk-navbar-nav > li > a:hover {
+    color: #1e87f0 !important; /* bleu UIkit */
 }

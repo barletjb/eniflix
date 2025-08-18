@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.23.11/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.11/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.11/dist/js/uikit-icons.min.js"></script>
     <link rel="icon" href="{{ asset('images/icon.png') }}">
     {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -12,14 +16,28 @@
     {% endblock %}
 </head>
 <body>
-<h1><img src="{{ asset('images/logo.png') }}"></h1>
-<nav>
-    <ul>
-        <li><a href="{{ path('home') }}">Home</a></li>
-        <li><a href="{{ path('list') }}">Catalogue</a></li>
-    </ul>
-</nav>
+<header>
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="{{ path('home') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height:40px;">
+            </a>
+            <ul class="uk-navbar-nav">
+                <li><a href="{{ path('home') }}"><span uk-icon="icon: home"></span> Home</a></li>
+                <li><a href="{{ path('list') }}"><span uk-icon="icon: thumbnails"></span> Catalogue</a></li>
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+                <li><a href="#"><span uk-icon="icon: user"></span> Mon compte</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-{% block body %}{% endblock %}
+<main class="uk-container uk-margin-top">
+    {% block body %}{% endblock %}
+</main>
+
 </body>
 </html>
