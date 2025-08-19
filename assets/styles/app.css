@@ -24,3 +24,19 @@ body {
 .uk-navbar-nav > li > a:hover {
     color: #1e87f0 !important; /* bleu UIkit */
 }
+
+.alert {
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.alert-success {
+    background-color: rgba(158, 255, 158, 0.6);
+}
+
+.alert-danger {
+    background-color: rgba(255, 84, 84, 0.6);
+}
