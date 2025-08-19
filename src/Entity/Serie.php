@@ -30,7 +30,7 @@ class Serie
     private ?string $overview = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Choice(choices: ['Returning', 'ended',' canceled'],
+    #[Assert\Choice(choices: ['returning', 'ended',' canceled'],
                            message: 'Ce choix n\'est pas valide')]
     private ?string $status = null;
 
