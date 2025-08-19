@@ -124,8 +124,8 @@ final class SerieController extends AbstractController
                 $name = $slugger->slug($serie->getName().'-'. uniqid() . '.' . $file->guessExtension());
                 $dir = $parameterBag->get('serie')['poster_directory'];
                 $file->move($dir, $name);
-                if ($serie->getPoster() && file_exists($dir . $serie->getPoster())) {
-                    unlink($dir . $serie->getPoster());
+                if ($serie->getPoster() && file_exists($dir . '/' . $serie->getPoster())) {
+                    unlink($dir . '/' . $serie->getPoster());
                 }
                 $serie->setPoster($name);
             }
