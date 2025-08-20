@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Serie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -62,6 +63,20 @@ class SerieRepository extends ServiceEntityRepository
         return $conn->prepare($sql)
             ->executeQuery(['popularity' => $popularity, 'date' => (new \DateTime('- 5 years'))->format('Y-m-d'), 'vote' => $vote])
             ->fetchAllAssociative();
+    }
+
+    public function getSeriesWithSeasons(int $nbParPage, int $offset) : Paginator
+    {
+        $q = $this->createQueryBuilder('s')
+            ->orderBy('s.popularity', 'DESC')
+            ->leftJoin('s.seasons', 'seasons')
+            ->addSelect('seasons')
+            ->setFirstResult($offset)
+            ->setMaxResults($nbParPage)
+            ->getQuery();
+
+        return new Paginator($q);
+
     }
 
     //    /**

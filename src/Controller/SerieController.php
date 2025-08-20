@@ -44,12 +44,17 @@ final class SerieController extends AbstractController
         ];
 
 
+
+        /*
         $series = $serieRepository->findBy(
             $criterias,
             ['popularity' => 'DESC'],
             $nbPerPage,
             $offset
         );
+
+        */
+        $series = $serieRepository->getSeriesWithSeasons($nbPerPage, $offset);
 
         $total = $serieRepository->count($criterias);
         $totalPages = ceil($total / $nbPerPage);
